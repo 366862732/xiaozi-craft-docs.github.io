@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "4d840f696d4637e2",
+    "type": "split",
+    "children": [
+      {
+        "id": "82411b6c4c15fd9c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3c4db54f4d225d0d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/xiaozi craft/intro.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "intro"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4e58e08518c631ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "866fbed38a80333e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "91ad6ee290782b83",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "e2e3e645fa6e642a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "2feed45171ab8f4e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "62d85f6bd9a81dc9",
+    "type": "split",
+    "children": [
+      {
+        "id": "e8711aec000f6763",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1cc77050fd57a397",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "docs/xiaozi craft/intro.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "intro 的反向链接列表"
+            }
+          },
+          {
+            "id": "db48564cbfc1c916",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "docs/xiaozi craft/intro.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "intro 的出链列表"
+            }
+          },
+          {
+            "id": "e2326d9563acfb69",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "b0dbd0531e9fb2ca",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "38dd6536e04d42a4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "docs/xiaozi craft/intro.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "intro 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "91ad6ee290782b83",
+  "lastOpenFiles": [
+    "docs/index.md",
+    "docs/user-guide/install/server.md",
+    "docs/user-guide/install/client.md",
+    "docs/user-guide/install",
+    "docs/user-guide/jvm.md",
+    "docs/user-guide/intro.md",
+    "docs/forge/rendering/intro.md",
+    "docs/forge/mixin/intro.md",
+    "docs/forge/events/intro.md",
+    "docs/forge/groovyscript/intro.md",
+    "docs/forge/debugging/intro.md",
+    "docs/forge/behavior/intro.md",
+    "docs/forge/rendering",
+    "docs/forge/mixin",
+    "docs/forge/events",
+    "docs/forge/groovyscript",
+    "docs/forge/debugging",
+    "docs/forge/behavior",
+    "docs/forge",
+    "docs/xiaozi craft/intro.md",
+    "docs/xiaozi craft",
+    "docs/user-guide/migration.md",
+    "docs/user-guide",
+    "docs/guide/events.md",
+    "docs/guide/recipes.md",
+    "docs/guide/blocks.md",
+    "docs/guide/items.md",
+    "docs/guide/structure.md",
+    "docs/guide/setup.md",
+    "docs/guide/quickstart.md",
+    "docs/guide/intro.md",
+    "docs/guide/index2.md",
+    "docs/index2.md",
+    "docs/guide/intro/index2.md",
+    "docs/guide/快速开始.md"
+  ]
+}

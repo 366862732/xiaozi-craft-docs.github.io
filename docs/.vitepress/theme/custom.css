@@ -1,0 +1,37 @@
+:root {
+  --vp-sidebar-width: 272px;
+}
+
+@media (min-width: 1440px) {
+  .VPDoc.has-sidebar .content-container {
+    max-width: 960px;
+  }
+}
+
+.VPSidebar {
+  border-right: 1px solid var(--vp-c-divider);
+}
+
+.VPSidebarItem.level-0 > .item > .link,
+.VPSidebarItem.level-0 > .item > .text {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.VPSidebarItem.level-1 > .item > .link,
+.VPSidebarItem.level-1 > .item > .text {
+  font-size: 16px;
+}
+
+.VPSidebarItem.level-2 > .item > .link,
+.VPSidebarItem.level-2 > .item > .text {
+  font-size: 15px;
+}
+
+.VPSidebarItem .item {
+  min-height: 34px;
+}
+
+.VPSidebarItem .indicator {
+  opacity: 0.8;
+}
