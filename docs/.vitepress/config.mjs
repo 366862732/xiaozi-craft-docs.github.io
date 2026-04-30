@@ -43,11 +43,7 @@ export default defineConfig({
           { text: '介绍', link: '/guide/intro' },
           { text: '快速开始', link: '/guide/quickstart' },
           { text: '环境搭建', link: '/guide/setup' },
-          { text: '项目结构', link: '/guide/structure' },
-          { text: '物品系统', link: '/guide/items' },
-          { text: '方块系统', link: '/guide/blocks' },
-          { text: '合成配方', link: '/guide/recipes' },
-          { text: '事件监听', link: '/guide/events' }
+          { text: '项目结构', link: '/guide/structure' }
         ]
       }
     ],
