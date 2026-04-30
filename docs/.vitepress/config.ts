@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'xiaozi craft技术文档',
   description: 'xiaozi craft的开发文档',
+  base: '/xiaozi-craft-docs.github.io/'
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
