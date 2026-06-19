@@ -32,7 +32,8 @@ export default defineConfig({
                     { text: '服务端', link: '/user-guide/install/server' }
                   ]
                 },
-                { text: 'JVM 参数', link: '/user-guide/jvm' }
+                { text: 'JVM 参数', link: '/user-guide/jvm' },
+                { text: 'DirectXmod', link: '/user-guide/directxmod' }
               ]
             }
           ],
@@ -43,8 +44,7 @@ export default defineConfig({
                 { text: '介绍', link: '/guide/intro' },
                 { text: '快速开始', link: '/guide/quickstart' },
                 { text: '环境搭建', link: '/guide/setup' },
-                { text: '项目结构', link: '/guide/structure' },
-                { text: 'DirectXmod', link: '/guide/directxmod' }
+                { text: '项目结构', link: '/guide/structure' }
               ]
             }
           ],
@@ -88,7 +88,8 @@ export default defineConfig({
                     { text: 'Server', link: '/en/user-guide/install/server' }
                   ]
                 },
-                { text: 'JVM Arguments', link: '/en/user-guide/jvm' }
+                { text: 'JVM Arguments', link: '/en/user-guide/jvm' },
+                { text: 'DirectXmod', link: '/en/user-guide/directxmod' }
               ]
             }
           ],
@@ -99,8 +100,7 @@ export default defineConfig({
                 { text: 'Overview', link: '/en/guide/intro' },
                 { text: 'Quick Start', link: '/en/guide/quickstart' },
                 { text: 'Environment Setup', link: '/en/guide/setup' },
-                { text: 'Project Structure', link: '/en/guide/structure' },
-                { text: 'DirectXmod', link: '/en/guide/directxmod' }
+                { text: 'Project Structure', link: '/en/guide/structure' }
               ]
             }
           ],
