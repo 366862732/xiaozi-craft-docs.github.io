@@ -1,193 +1,87 @@
-# DX12-Lib 原生渲染库 贡献者快速上手技术文档
-### 如果使用的是AI，在贡献之前请先确认是否符合项目规范。标注使用的什么模型，以及模型的版本。
-## 文档基础信息
-- 项目名称：dx12-lib-template-26.1.2
-- 核心功能：Java JNI + D3D12 混合渲染（3D世界模型 + UI正交界面 + 粒子/半透明/天空渲染管线）
-- 核心痛点修复：`javaw.exe 0x00000000 内存不能为written` 空指针写入崩溃
-- 开发环境：Windows 10/11 + Visual Studio 2022 + JDK 64位
-- 构建方式：CMake / VS文件夹原生编译（无固定vcxproj）
-- 代码核心文件：`src/main/native/windows/d3d12bridge.cpp`
 
-# 一、环境前置依赖（必须全部安装）
-## 作者的开发环境配置（参考）
-Visual Studio 2026+IntelliJ IDEA Community Edition 2025.2.6.2+Trae+VS Code
-## 1. Windows SDK
-安装对应VS版本Windows SDK（包含D3D12、DXGI头文件与静态库）
-## 2. Visual Studio 2026
-- 勾选组件：C++桌面开发、Windows 10/11 SDK、CMake工具集
-- 无需手动创建vcxproj，支持「打开文件夹」直接编译C++源码
-## 3. 64位JDK（与编译DLL位数严格统一）
-- 推荐 JDK8 / JDK17 x64
-- 环境变量配置`JAVA_HOME`，VS可自动读取jni.h头文件
-## 4. 调试工具（必装，崩溃日志定位）
-DebugView：捕获代码内`Log()`打印的运行时日志，区分正常/异常`[FATAL]/[ERROR]`
+# DirectXMod 开源项目贡献指南
+欢迎各位开发者参与本 Minecraft D3D12 渲染模组共建！
+无论你是提供技术方案、编写代码修复BUG、新增功能、优化性能、完善文档、测试排错，都可以参与项目。本文档说明当前待解决技术难题、参与流程、署名奖励机制、代码规范。
 
-# 二、项目目录结构说明
-```
-dx12-lib-template-26.1.2
-├─ src
-│  ├─ main
-│  │  ├─ native
-│  │  │  └─ windows
-│  │  │     └─ d3d12bridge.cpp  # 唯一核心C++ JNI+D3D12代码
-│  │  └─ java
-│  │     └─ DX12LibClient.java  # JNI Native接口声明
-├─ lib        # 编译输出64位DLL存放目录
-├─ run.bat    # Java程序启动脚本
-└─ build-x64  # CMake编译生成目录（手动创建）
-```
+#### 你目前看到的已完成的是由爱睡觉的白洲梓测试模组+AI生成代码。使用了Deepseek的API。你也可以使用AI生成贡献代码。但是记得声明使用了什么AI模型。
+## 一、当前待攻坚核心难题（可自由认领）
+### 高优先级功能卡点
+1. **半透明物体渲染**
+卡点：玻璃、树叶、水等半透明物体渲染顺序错乱、Alpha混合色彩失真、深度排序性能开销大；D3D12混合状态无法对齐原版OpenGL视觉效果。
+需求：实现相机距离动态深度排序、适配MC原生渲染逻辑、优化批量渲染性能。
 
-# 三、两种编译构建方案（任选其一）
-## 方案1：VS图形界面「打开文件夹」编译（推荐新手，无需CMake命令）
-1. 打开Visual Studio 2022 → 「打开文件夹」
-2. 选中目录：`D:\dx12-lib-template-26.1.2\src\main\native\windows`
-3. 顶部配置切换：
-   - 解决方案平台：`x64`（**禁止x86，位数不匹配直接内存崩溃**）
-   - 生成配置：`Release`
-4. 手动配置链接依赖（仅首次配置）
-   右键项目 → 属性 → 链接器 → 输入 → 附加依赖项，添加：
-   ```
-   d3d12.lib
-   dxgi.lib
-   d3dcompiler.lib
-   ```
-5. 菜单栏点击「生成」→「全部生成」
-6. 编译产物：x64 Release DLL输出至项目`lib`文件夹
+2. **完整天空盒渲染管线**
+卡点：Java侧天空颜色、日月坐标、星空参数已全部提取，但C++ `nativeRenderSky` 未实现；昼夜渐变、星图批量渲染逻辑缺失。
+需求：半球渐变着色、日月投影变换、星空顶点批量渲染、昼夜动画联动。
 
-## 方案2：CMake命令行批量编译（自动化/CI场景）
-### 1）根目录执行PowerShell
-```powershell
-# 1. 进入项目根目录
-cd D:\dx12-lib-template-26.1.2
-# 2. 创建x64编译目录
-mkdir build-x64
-cd build-x64
-# 3. CMake生成VS x64解决方案
-cmake .. -A x64
-# 4. MSBuild编译Release版本
-msbuild dx12-lib.sln /p:Platform=x64;Configuration=Release
-```
-### 2）编译完成后拷贝DLL至`lib`目录供Java调用
+3. **粒子完整动画系统**
+卡点：仅基础粒子渲染框架，无图集帧动画、生命周期颜色渐变、深度校验逻辑，粒子会穿透实体。
+需求：Shader帧插值、纹理分块采样、透明粒子深度剔除。
 
-# 四、核心代码安全加固规范（修复0地址崩溃强制标准）
-## 4.1 所有`->Map()`内存映射强制双校验（13处全覆盖标准模板）
-### 错误写法（会触发0x00000000写入崩溃，禁止提交）
+4. **实体骨骼蒙皮渲染**
+卡点：仅静态实体模型渲染，玩家、生物骨骼变换矩阵未提取，D3D12 GPU蒙皮管线未搭建。
+需求：反射骨骼矩阵、常量缓冲区蒙皮计算、多实体批量渲染。
+
+### 中长期开发任务
+- 多Pass分层渲染（分离3D场景、半透明物体、GUI界面）
+- 统一Shader管理框架 + 后处理（抗锯齿、雾效、色彩校正）
+- JNI跨线程数据传输性能优化，减少帧内存拷贝
+- D3D12 SRV/RTV描述符堆动态扩容，解决大量纹理显存碎片
+- Sodium等主流光影模组兼容适配
+- 窗口缩放、最小化、多显示器稳定性修复
+
+## 二、三种参与贡献方式
+### 方式1：仅提供技术方案（无需编码）
+1. 在GitHub Issues新建讨论，标题前缀 `[SOLUTION提案]`
+2. 内容包含：目标问题、整体实现思路、D3D12/JNI技术细节、性能预估、潜在风险与规避方案
+3. 团队审核方案可行性，通过后两种选择：
+   - 由你自行落地开发提交PR；
+   - 团队代为开发，源码、README均标注你的方案贡献。
+
+### 方式2：编写代码实现功能/修复BUG（推荐）
+1. Fork 本仓库，新建分支，分支命名规范：
+   - 修复BUG：`fix/xxx问题`
+   - 新增功能：`feature/xxx功能`
+2. 完整自测：Windows平台、MC 26.1.2原版，覆盖窗口缩放、F6开关、F3调试等场景
+3. Commit提交规范：`[模块] 实现/修复：功能描述`
+   示例：`[d3d12bridge] 实现半透明物体深度排序`
+4. 提交Pull Request，关联对应Issue，附带测试截图/录屏
+5. 经过代码评审、版本测试后合并入库
+
+### 方式3：文档、测试、辅助贡献
+- 完善开发注释、补充开发文档、整理排错手册
+- 提交BUG复现步骤、录制测试视频、整理场景测试用例
+
+## 三、贡献署名永久激励规则（三重官方收录）
+只要你的方案被采纳、PR成功合并，将获得三层永久署名记录：
+1. **源码文件注释标注**
+在对应功能核心代码头部添加固定注释，记录你的GitHub昵称、修复版本、完成日期。
+示例C++：
 ```cpp
-void* dst;
-g_imVB->Map(0, nullptr, &dst);
-memcpy(dst, data, size);
+// 半透明物体深度排序与Alpha混合实现
+// 贡献开发者：GitHub@YourName | 版本：v0.4.0 | 完成日期：2026-XX-XX
 ```
-### 规范加固写法（所有Map调用统一使用）
-```cpp
-void* dst = nullptr;
-HRESULT hr = g_imVB->Map(0, nullptr, &dst);
-// 双重校验：API调用失败 || 返回空指针
-if (FAILED(hr) || dst == nullptr)
-{
-    // 1. 打印定位日志，格式固定[FATAL]
-    Log("[FATAL] 【函数名】缓冲区Map返回空地址，阻断写入防止0地址崩溃");
-    // 2. 根据场景补充资源释放，避免内存泄漏/死锁
-    // JNI场景：释放Java数组、解锁临界区
-    env->ReleaseFloatArrayElements(verts, buf, JNI_ABORT);
-    LeaveCriticalSection(&g_stateLock);
-    return;
-}
-// 正常业务memcpy逻辑不变
-memcpy(dst, data, size);
-```
+Java JNI代码同步添加对应注释。
 
-## 4.2 D3D12命令列表`Reset()`强制返回值校验（2处RenderLoop固定点位）
-### 规范模板
-```cpp
-HRESULT hr = g_alloc->Reset();
-if (FAILED(hr)) {
-    Log("[ERROR] 命令分配器 Reset 失败");
-    continue; // 跳过当前渲染帧
-}
-hr = g_cl->Reset(g_alloc.Get(), nullptr);
-if (FAILED(hr)) {
-    Log("[ERROR] 命令列表 Reset 失败");
-    continue;
-}
-```
+2. **项目README.md贡献者表格**
+所有有效贡献统一更新至README底部「贡献开发者」列表，永久留存。
 
-## 4.3 全局Map点位覆盖清单（贡献者修改后必须核对）
-1. MkUpload 通用上传缓冲
-2. UploadTextureEx 纹理上传
-3. CaptureMCFrame 帧截图捕获
-4. EnsureIMVBCapacity 实例顶点扩容双Map
-5. RenderLoop 循环内实例顶点写入Map
-6. DrawChunk CBV常量缓冲刷新
-7. 初始化阶段CBV缓冲创建
-8. nativeRecordVertices JNI顶点接收缓冲
-9. nativeRecordVerticesPT 粒子顶点接收
-10. UploadVertexData（原生自带校验，无需修改）
-11. nativeRenderSky 天空渐变常量缓冲
-12. nativeRenderTransparent 半透明渲染常量缓冲
-13. 实例化IB顶点扩容临时缓冲
+3. **MC百科 Mod 官方词条开发团队**
+模组正式发布上架MC百科后，将你的GitHub昵称写入模组词条「开发团队」栏目，标注你负责攻克的渲染模块，永久对外展示。
 
-# 五、JNI Java层对接规范（零修改原则）
-1. **禁止删除原有旧native兼容接口**，新增功能使用`Safe`后缀重载接口
-```java
-// 旧兼容接口（保留不动）
-public static native void nativeRecordVertices(float[] vertexData, int floatCount);
-// 新安全接口（完整顶点字节参数，修复顶点解析错乱）
-public static native void nativeRecordVerticesSafe(float[] vertexData, int coordType, int vertexCount, int vertexByteSize);
-```
-2. Java业务调用新接口计算规则
-```java
-float[] vertices = getMeshVertices();
-int singleVertexFloatCount = 7; // xyz+color+uv，按顶点结构修改
-int vertexCount = vertices.length / singleVertexFloatCount;
-int vertexByteSize = singleVertexFloatCount * 4; // float固定4字节
-nativeRecordVerticesSafe(vertices, 0/*0=3D,1=UI*/, vertexCount, vertexByteSize);
-```
-3. 无需新增`nativeSetCoordType`，通过DrawChunk独立MVP矩阵区分3D/UI渲染，不增加JNI交互开销
+### 贡献分级标准
+1. 仅提供可行技术方案，未参与编码：源码注释鸣谢 + README名单记录
+2. 核心功能完整实现、重大渲染BUG修复（半透明/天空盒/粒子/骨骼蒙皮等）：三重全署名（源码+README+MC百科）
+3. 小BUG修复、文档完善、兼容性适配：仅README贡献名单收录
 
-# 六、运行测试与崩溃验证流程
-## 1. 部署步骤
-1. 将编译完成x64 DLL放入项目`lib`文件夹
-2. 执行`run.bat`启动Java渲染程序
-```bat
-@echo off
-javaw -XX:+UseSerialGC -jar your-app.jar
-pause
-```
-## 2. 日志调试（DebugView使用方法）
-1. 打开DebugView，开启捕获Win32 OutputDebug日志
-2. 正常渲染预期输出：仅打印`Vertex range: count=xxx`，无`[ERROR]/[FATAL]`
-3. 异常边界场景（显存不足/缓冲扩容失败）：
-   - 不会弹出`javaw.exe 应用程序错误 0x00000000不能为written`弹窗
-   - DebugView打印对应`[FATAL]`日志，程序自动跳过异常帧继续运行
+## 四、统一开发规范
+1. C++ D3D12代码遵循微软DirectX12标准编码风格；Java Fabric Mixin遵循MC模组通用规范
+2. 所有新增JNI接口必须增加D3D核心对象空指针校验，杜绝0xc010崩溃!尤其注意！！！，爱睡觉的白洲梓踩了很多次坑(C++端)
+3. 新增顶点、矩阵、纹理逻辑兼容现有顶点自动检测框架，不破坏现有渲染管线
+4. 提交PR必须附带完整测试记录，覆盖窗口缩放、切换渲染开关、多实体场景等用例
 
-# 七、代码提交约束（贡献者PR合并标准）
-## ✅ 允许提交
-1. 仅增量添加安全校验代码，**不删除/覆盖原有业务逻辑**（天空、粒子、半透明排序、多PSO、独立MVP全部保留）
-2. 全部`->Map()`/`Reset()`按标准模板添加双重校验日志
-3. 不引入新架构冲突变量：不新增`g_3dRootSignature/g_uiPSO`等模板管线变量
-4. 不依赖`d3dx12.h`，仅使用原生D3D12 API
-5. Java接口向下兼容，旧native方法不删除
+## 五、沟通渠道
+所有技术方案讨论、BUG反馈、开发疑问统一在仓库 GitHub Issues 提交，维护者会定期回复评审。
 
-## ❌ 禁止提交
-1. 完整替换`d3d12bridge.cpp`全文件，覆盖原有渲染业务代码
-2. 新增冲突JNI接口、全局渲染管线变量
-3. 移除Map/Reset的空指针拦截校验，删除`[FATAL]/[ERROR]`日志
-4. 混用32/64位编译产物，提交x86 DLL
-5. 修改原有天空、粒子、半透明、纹理、深度缓冲渲染逻辑
-
-# 八、常见问题快速排错
-## 1. MSBuild提示「项目文件不存在」
-原因：目录无`.vcxproj`，本项目为CMake/文件夹编译架构
-解决：使用VS「打开文件夹」图形编译，或执行CMake生成解决方案
-
-## 2. 运行弹出javaw内存写入崩溃弹窗
-排查点：
-1. DLL与JDK位数不一致（必须全部x64）
-2. 存在未加固的`->Map()`调用，全局搜索`->Map(`核对13处点位
-3. JNI函数异常分支未释放数组/解锁临界区，导致内存悬空
-
-## 3. 编译报`d3d12.h 找不到`
-解决：安装完整Windows SDK，VS工具集切换至对应SDK版本
-
-## 4. 渲染画面空白/模型扁平化
-原因：业务MVP矩阵区分3D/UI逻辑问题，**与本次内存加固代码无关**，单独排查渲染管线coordType矩阵切换逻辑
+## 开源协议
+本项目使用 MIT 开源协议，所有提交的代码、文档均遵循 MIT 协议对外开放。
