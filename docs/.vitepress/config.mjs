@@ -15,7 +15,7 @@ export default defineConfig({
         nav: [
           { text: '首页', link: '/' },
           { text: '维基', link: '/user-guide/intro' },
-          { text: '开发文档', link: '/xiaozi%20craft/intro' },
+          { text: '开发文档', link: '/guide/intro' },
           { text: 'English', link: '/en/' }
         ],
         sidebar: {
@@ -46,9 +46,7 @@ export default defineConfig({
                 { text: '项目结构', link: '/guide/structure' },
                 { text: 'DirectXmod', link: '/guide/directxmod' },
               ]
-            }
-          ],
-          '/xiaozi%20craft/': [
+            },
             {
               text: '相关信息',
               items: [
@@ -71,7 +69,7 @@ export default defineConfig({
         nav: [
           { text: 'Home', link: '/en/' },
           { text: 'Wiki', link: '/en/user-guide/intro' },
-          { text: 'Dev Docs', link: '/en/xiaozi%20craft/intro' },
+          { text: 'Dev Docs', link: '/en/guide/intro' },
           { text: '中文', link: '/user-guide/intro' }
         ],
         sidebar: {
@@ -88,8 +86,7 @@ export default defineConfig({
                     { text: 'Server', link: '/en/user-guide/install/server' }
                   ]
                 },
-                { text: 'JVM Arguments', link: '/en/user-guide/jvm' },
-                { text: 'DirectXmod', link: '/en/user-guide/directxmod' }
+                { text: 'JVM Arguments', link: '/en/user-guide/jvm' }
               ]
             }
           ],
@@ -100,11 +97,10 @@ export default defineConfig({
                 { text: 'Overview', link: '/en/guide/intro' },
                 { text: 'Quick Start', link: '/en/guide/quickstart' },
                 { text: 'Environment Setup', link: '/en/guide/setup' },
-                { text: 'Project Structure', link: '/en/guide/structure' }
+                { text: 'Project Structure', link: '/en/guide/structure' },
+                { text: 'DirectXmod', link: '/en/guide/directxmod' }
               ]
-            }
-          ],
-          '/en/xiaozi%20craft/': [
+            },
             {
               text: 'Related Info',
               items: [
