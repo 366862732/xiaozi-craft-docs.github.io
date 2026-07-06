@@ -22,6 +22,7 @@
 1.21.10 Active
 1.21.11 Active
 26.1.2  Active
+26.2.0  in next support
 ```
 
 Java support
