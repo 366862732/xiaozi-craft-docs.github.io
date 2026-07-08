@@ -1,11 +1,12 @@
 # DirectXMod — Minecraft wgpu/DX12 Rendering Mod
 
+::: warning
 > **WARNING! Do not trust any unofficial port of DirectXmod. The author assumes no responsibility for any issues arising from unofficial ports and strongly advises against using them.**
 >
 > **WARNING! Do not trust any unofficial port of DirectXmod. The author assumes no responsibility for any issues arising from unofficial ports and strongly advises against using them.**
 >
 > **WARNING! Do not trust any unofficial port of DirectXmod. The author assumes no responsibility for any issues arising from unofficial ports and strongly advises against using them.**
-
+:::
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Fabric](https://img.shields.io/badge/Mod%20Loader-Fabric-blueviolet)](https://fabricmc.net/)
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-green)](https://www.minecraft.net/)

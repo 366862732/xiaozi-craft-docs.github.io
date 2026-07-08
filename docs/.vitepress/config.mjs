@@ -32,7 +32,7 @@ export default defineConfig({
                   ]
                 },
                 { text: 'JVM 参数', link: '/user-guide/jvm' },
-                { text: 'DirectXmod', link: '/guide/directxmod' },
+                { text: 'DirectXmod', link: '/user-guide/directxmod' },
               ]
             }
           ]
@@ -68,7 +68,7 @@ export default defineConfig({
                   ]
                 },
                 { text: 'JVM Arguments', link: '/en/user-guide/jvm' },
-                { text: 'DirectXmod', link: '/en/guide/directxmod' }
+                { text: 'DirectXmod', link: '/en/user-guide/directxmod' }
               ]
             }
           ]
