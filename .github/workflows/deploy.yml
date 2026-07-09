@@ -39,6 +39,8 @@ jobs:
       - name: Copy custom homepage
         run: cp index.html docs/.vitepress/dist/index.html
 
+      - name: Copy background image
+        run: cp background.png docs/.vitepress/dist/background.jpg
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
