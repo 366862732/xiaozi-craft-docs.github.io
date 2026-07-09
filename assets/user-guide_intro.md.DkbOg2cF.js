@@ -5,7 +5,8 @@ import{_ as s}from"./chunks/新对话 (1).Yj5Mzoe7.js";import{_ as n,o as e,c as
 <span class="line"><span>1.21.8  活跃</span></span>
 <span class="line"><span>1.21.10 活跃</span></span>
 <span class="line"><span>1.21.11 活跃</span></span>
-<span class="line"><span>26.1.2  活跃</span></span></code></pre></div><p>java支持程度</p><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>java 17 不支持</span></span>
+<span class="line"><span>26.1.2  活跃</span></span>
+<span class="line"><span>26.2.0  下一个将要支持的版本</span></span></code></pre></div><p>java支持程度</p><div class="language-text vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang">text</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>java 17 不支持</span></span>
 <span class="line"><span>jvva 21 只兼容特定版本</span></span>
 <span class="line"><span>java 25 支持所有版本</span></span>
 <span class="line"><span>java 26 支持所有版本</span></span></code></pre></div>`,10)])])}const b=n(p,[["render",l]]);export{_ as __pageData,b as default};

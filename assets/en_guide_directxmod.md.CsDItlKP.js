@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as r}from"./chunks/framework.DJIAqD5B.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"en/guide/directxmod.md","filePath":"en/guide/directxmod.md"}'),d={name:"en/guide/directxmod.md"};function o(a,c,n,i,s,m){return t(),r("div")}const f=e(d,[["render",o]]);export{_ as __pageData,f as default};
