@@ -1,16 +1,16 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'xiaozi craft技术文档',
-  description: 'xiaozi craft的开发文档',
+  title: 'xiaozi Graphics Development Team技术文档',
+  description: 'xiaozi Graphics Development Team的开发文档',
   base: '/xiaozi-craft-docs.github.io/',
 
   locales: {
     root: {
       label: '中文',
       lang: 'zh-CN',
-      title: 'xiaozi craft技术文档',
-      description: 'xiaozi craft的开发文档',
+      title: 'xiaozi Graphics Development Team技术文档',
+      description: 'xiaozi Graphics Development Team的开发文档',
       themeConfig: {
         nav: [
           { text: '首页', link: '/' },
