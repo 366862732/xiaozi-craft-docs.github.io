@@ -17,7 +17,7 @@
 https://github.com/366862732/xiaozi-craft/issues
 ```
 如果你没有 GitHub 账号，你需要先注册一个。（或者是第二种方式）
-### 1.我们先打开xiaozi craft的 GitHub Issues 页面
+## 1.首先我们先打开xiaozi craft的 GitHub Issues 页面
 ![alt text](image.png)
 #### 点击视图中的绿色的"New Issue" 按钮。
 ![alt text](image-1.png)

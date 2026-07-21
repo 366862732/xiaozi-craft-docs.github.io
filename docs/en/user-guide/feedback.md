@@ -9,7 +9,7 @@ Welcome to report any issues you encounter while using `xiaozi craft`.
 
 ## How to Submit an Issue Report?
 
-### Method 1: Submit an issue report on GitHub Issues
+## Method 1: Submit an issue report on GitHub Issues
 
 1. Open the [GitHub Issues](https://github.com/366862732/xiaozi-craft/issues) page.  
 You can click the hyperlink in the previous sentence, or copy the URL below:
@@ -18,11 +18,11 @@ https://github.com/366862732/xiaozi-craft/issues
 ```
 If you don't have a GitHub account, you need to sign up first. (Or use Method 2.)
 
-#### 1. First, open the xiaozi craft GitHub Issues page.
+## 1. First, open the xiaozi craft GitHub Issues page.
 ![alt text](image.png)
 #### Click the green "New Issue" button in the view.
 ![alt text](image-1.png)
-#### 2. Fill in the title and description of the issue report.
+## 2. Fill in the title and description of the issue report.
 :::tip
 Make sure to clearly state what the problem is, how it manifests, and the steps to reproduce it.
 :::
@@ -30,7 +30,7 @@ Make sure to clearly state what the problem is, how it manifests, and the steps 
 "Add a Title" is the title of your report.  
 "Add a Description" is the detailed description of your report (you can use Markdown format).
 
-#### 3. Upload relevant log files.
+## 3. Upload relevant log files.
 :::tip
 You need to upload relevant log files, such as `latest.log` or `debug.log`. The more detailed the logs you provide, the better, as this helps us pinpoint the issue more accurately.  
 These log files are usually found in the `logs` folder under your xiaozi craft working directory.
@@ -49,7 +49,7 @@ You can upload files by dragging them from your file explorer into the upload ar
 You must upload relevant log files, otherwise we cannot diagnose the issue. Any log files generated from the problem are acceptable.
 :::
 
-#### 4. Click the "Create" button.
+## 4. Click the "Create" button.
 :::warning
 Before clicking this button, please confirm the following:
 1. You have clearly filled in the issue title, description, and reproduction steps.
@@ -62,7 +62,7 @@ After confirming all the items in the checklist above, click the "Create" button
 
 ![alt text](image-4.png)
 
-### Method 2: Report issues via email
+## Method 2: Report issues via email
 :::tip
 Considering that you may not have a GitHub account, you can also report issues via email.
 :::
