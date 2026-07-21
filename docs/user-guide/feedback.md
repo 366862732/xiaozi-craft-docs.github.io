@@ -12,7 +12,7 @@
 ## 第一种方式：在 GitHub Issues 中提交问题报告
 
 1. 打开 [GitHub Issues](https://github.com/366862732/xiaozi-craft/issues) 页面。
-你可以直接打击上方这一句话的超链接，也可以复制下方的 URL。
+你可以直接点击上方这一句话的超链接，也可以复制下方的 URL。
 ```text
 https://github.com/366862732/xiaozi-craft/issues
 ```
