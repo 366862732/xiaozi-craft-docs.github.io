@@ -14,7 +14,7 @@
 ## Current supported versions
 
 ```text
-1.20.1  Maintenance mode / LTSC
+1.20.1  Maintenance mode / LTS
 1.21.1  Active
 1.21.4  Active
 1.21.7  Active
@@ -22,7 +22,7 @@
 1.21.10 Active
 1.21.11 Active
 26.1.2  Active
-26.2.0  in next support
+26.2   Active
 ```
 
 Java support
