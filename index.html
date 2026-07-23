@@ -16,23 +16,16 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-image: url('./background.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: background 0.3s ease;
             position: relative;
-            overflow: hidden;
-        }
-
-        /* 背景视频 */
-        .background-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
         }
 
         body.dark h1 {
@@ -56,6 +49,15 @@
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        body.dark {
+            background-image: url('./background.jpg');
+        }
+
+        /* 背景音频（隐藏） */
+        #bgAudio {
+            display: none;
         }
 
         /* 音频开关按钮 */
@@ -87,6 +89,12 @@
         .theme-toggle:hover,
         .audio-toggle:hover {
             transform: scale(1.02);
+        }
+
+        /* 深色模式下按钮文字颜色 */
+        body.dark .theme-toggle,
+        body.dark .audio-toggle {
+            color: #f1f5f9;
         }
 
         .container {
@@ -210,11 +218,6 @@
     </style>
 </head>
 <body>
-    <!-- 背景视频 -->
-    <video class="background-video" loop playsinline id="bgVideo">
-        <source src="./jvm.mp4" type="video/mp4">
-    </video>
-
     <div class="top-bar">
         <h2>xiaozi Graphics Development Team / 爱睡觉的白洲梓</h2>
     </div>
@@ -227,6 +230,11 @@
     <button class="audio-toggle" id="audioToggle">
         🔇 静音
     </button>
+    
+    <!-- 背景音频（隐藏） -->
+    <audio id="bgAudio" loop>
+        <source src="./2134.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="container">
         <h1 id="div-h1">xiaozi Graphics Development Team / xiaozi craft</h1>
@@ -237,23 +245,18 @@
     </div>
 
     <script>
-        // 背景视频控制
-        const bgVideo = document.getElementById('bgVideo');
-        bgVideo.muted = true;
-        bgVideo.play().catch(e => console.log('视频播放失败:', e));
-
-        // 音频开关按钮
+        // 背景音频控制
+        const bgAudio = document.getElementById('bgAudio');
         const audioToggle = document.getElementById('audioToggle');
         let isMuted = true;
         
         audioToggle.addEventListener('click', () => {
             if (isMuted) {
-                bgVideo.muted = false;
-                bgVideo.volume = 1.0;
+                bgAudio.play().catch(e => console.log('音频播放失败:', e));
                 audioToggle.innerHTML = '🔊 有声音';
                 isMuted = false;
             } else {
-                bgVideo.muted = true;
+                bgAudio.pause();
                 audioToggle.innerHTML = '🔇 静音';
                 isMuted = true;
             }
