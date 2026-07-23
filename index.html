@@ -16,19 +16,23 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-image: url('./background.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
-        body.dark {
-            background-image: url('./background.jpg');
+
+        /* 背景视频 */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
         }
 
         body.dark h1 {
@@ -37,6 +41,25 @@
 
         /* 右上角深色模式按钮 */
         .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 140px;
+            z-index: 1000;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 音频开关按钮 */
+        .audio-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
@@ -52,16 +75,17 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            z-index: 100;
         }
 
-        body.dark .theme-toggle {
+        body.dark .theme-toggle,
+        body.dark .audio-toggle {
             background: #1e293b;
             border-color: #475569;
             color: #f1f5f9;
         }
 
-        .theme-toggle:hover {
+        .theme-toggle:hover,
+        .audio-toggle:hover {
             transform: scale(1.02);
         }
 
@@ -132,12 +156,20 @@
                 padding: 10px 24px;
                 font-size: 16px;
             }
-            .theme-toggle {
+            .theme-toggle,
+            .audio-toggle {
                 top: 12px;
-                right: 12px;
                 padding: 6px 12px;
                 font-size: 12px;
                 z-index: 1000;
+            }
+            
+            .audio-toggle {
+                right: 12px;
+            }
+            
+            .theme-toggle {
+                right: 80px;
             }
         }
         #div-h1 {
@@ -178,12 +210,22 @@
     </style>
 </head>
 <body>
+    <!-- 背景视频 -->
+    <video class="background-video" loop playsinline id="bgVideo">
+        <source src="./jvm.mp4" type="video/mp4">
+    </video>
+
     <div class="top-bar">
         <h2>xiaozi Graphics Development Team / 爱睡觉的白洲梓</h2>
     </div>
     <!-- 深色模式按钮 -->
     <button class="theme-toggle" id="themeToggle">
         🌙 深色模式
+    </button>
+    
+    <!-- 音频开关按钮 -->
+    <button class="audio-toggle" id="audioToggle">
+        🔇 静音
     </button>
 
     <div class="container">
@@ -195,6 +237,29 @@
     </div>
 
     <script>
+        // 背景视频控制
+        const bgVideo = document.getElementById('bgVideo');
+        bgVideo.muted = true;
+        bgVideo.play().catch(e => console.log('视频播放失败:', e));
+
+        // 音频开关按钮
+        const audioToggle = document.getElementById('audioToggle');
+        let isMuted = true;
+        
+        audioToggle.addEventListener('click', () => {
+            if (isMuted) {
+                bgVideo.muted = false;
+                bgVideo.volume = 1.0;
+                audioToggle.innerHTML = '🔊 有声音';
+                isMuted = false;
+            } else {
+                bgVideo.muted = true;
+                audioToggle.innerHTML = '🔇 静音';
+                isMuted = true;
+            }
+        });
+
+        // 深色模式按钮
         const toggle = document.getElementById('themeToggle');
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark');
