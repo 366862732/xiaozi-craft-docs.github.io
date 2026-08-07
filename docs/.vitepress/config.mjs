@@ -23,6 +23,7 @@ export default defineConfig({
               text: '用户指南',
               items: [
                 { text: '引言', link: '/user-guide/intro' },
+                { text: 'Java的选择', link: '/user-guide/java' },
                 { text: '整合包迁移指南', link: '/user-guide/migration' },
                 {
                   text: '安装教程',
@@ -60,6 +61,7 @@ export default defineConfig({
               text: 'User Guide',
               items: [
                 { text: 'Introduction', link: '/en/user-guide/intro' },
+                { text: 'Java Selection', link: '/en/user-guide/java' },
                 { text: 'Migration Guide', link: '/en/user-guide/migration' },
                 {
                   text: 'Installation',
