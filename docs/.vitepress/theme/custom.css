@@ -36,3 +36,6 @@
 .VPSidebarItem .indicator {
   opacity: 0.8;
 }
+.VPDoc .container {
+  max-width: 100% !important;
+}
