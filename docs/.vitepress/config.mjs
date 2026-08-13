@@ -5,6 +5,8 @@ export default defineConfig({
   description: 'xiaozi Graphics Development Team的开发文档',
   base: '/xiaozi-craft-docs.github.io/',
 
+  ignoreDeadLinks: [/localhost:/],
+
   locales: {
     root: {
       label: '中文',
@@ -29,7 +31,8 @@ export default defineConfig({
                   text: '安装教程',
                   items: [
                     { text: '客户端', link: '/user-guide/install/client' },
-                    { text: '服务端', link: '/user-guide/install/server' }
+                    { text: '服务端(Windows)', link: '/user-guide/install/server' },
+                    { text: '服务端(Linux)', link: '/user-guide/install/server-linux' }
                   ]
                 },
                 { text: 'JVM 参数', link: '/user-guide/jvm' },
@@ -67,7 +70,8 @@ export default defineConfig({
                   text: 'Installation',
                   items: [
                     { text: 'Client', link: '/en/user-guide/install/client' },
-                    { text: 'Server', link: '/en/user-guide/install/server' }
+                    { text: 'Server (Windows)', link: '/en/user-guide/install/server' },
+                    { text: 'Server (Linux)', link: '/en/user-guide/install/server-linux' }
                   ]
                 },
                 { text: 'JVM Arguments', link: '/en/user-guide/jvm' },

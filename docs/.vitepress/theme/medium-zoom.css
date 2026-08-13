@@ -1,0 +1,50 @@
+/* 图片点击放大样式 */
+
+/* 给所有文档图片添加悬浮提示 */
+.VPDoc .content img {
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.VPDoc .content img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 全屏遮罩 */
+.image-zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: zoom-in 0.2s ease;
+}
+
+@keyframes zoom-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.image-zoom-overlay img {
+  max-width: 94vw;
+  max-height: 94vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+  animation: zoom-img-in 0.25s ease;
+}
+
+@keyframes zoom-img-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
