@@ -43,6 +43,7 @@ jobs:
         run: |
           cp day.jpg docs/.vitepress/dist/day.jpg
           cp night.jpg docs/.vitepress/dist/night.jpg
+          cp 2134.mp3 docs/.vitepress/dist/2134.mp3
         
       - name: Setup Pages
         uses: actions/configure-pages@v5
