@@ -40,7 +40,8 @@ jobs:
         run: cp index.html docs/.vitepress/dist/index.html
 
       - name: Copy background image
-        run: cp background.jpg docs/.vitepress/dist/background.jpg
+        run: cp day.jpg docs/.vitepress/dist/day.jpg
+        run: cp night.jpg docs/.vitepress/dist/night.jpg
         
       - name: Setup Pages
         uses: actions/configure-pages@v5
