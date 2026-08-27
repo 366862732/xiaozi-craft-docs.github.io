@@ -16,7 +16,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-image: url('./background.jpg');
+            background-image: url('../day.jpg'); /* TODO: 替换浅色模式背景图片路径 */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -26,6 +26,15 @@
             justify-content: center;
             transition: background 0.3s ease;
             position: relative;
+        }
+
+        body.dark {
+            background-image: url('../night.jpg'); /* TODO: 替换深色模式背景图片路径 */
+        }
+
+        /* 背景音频（隐藏） */
+        #bgAudio {
+            display: none;
         }
 
         body.dark h1 {
@@ -49,15 +58,6 @@
             display: flex;
             align-items: center;
             gap: 6px;
-        }
-
-        body.dark {
-            background-image: url('./background.jpg');
-        }
-
-        /* 背景音频（隐藏） */
-        #bgAudio {
-            display: none;
         }
 
         /* 音频开关按钮 */
@@ -89,12 +89,6 @@
         .theme-toggle:hover,
         .audio-toggle:hover {
             transform: scale(1.02);
-        }
-
-        /* 深色模式下按钮文字颜色 */
-        body.dark .theme-toggle,
-        body.dark .audio-toggle {
-            color: #f1f5f9;
         }
 
         .container {
