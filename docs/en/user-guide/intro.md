@@ -23,6 +23,7 @@
 1.21.11 Active
 26.1.2  Active
 26.2   Active
+26.3   Active
 ```
 
 Java support
