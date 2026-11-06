@@ -37,6 +37,7 @@ export default defineConfig({
                 },
                 { text: 'JVM 参数', link: '/user-guide/jvm' },
                 { text: 'DirectXmod', link: '/user-guide/directxmod' },
+                { text: 'HMCL问题', link: '/user-guide/hmcl-issues' },
                 { text: '问题反馈', link: '/user-guide/feedback' },
               ]
             }
