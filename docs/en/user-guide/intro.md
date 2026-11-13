@@ -33,4 +33,6 @@ Java 17 is not supported
 Java 21 is supported only on specific versions
 Java 25 supports all versions
 Java 26 supports all versions
+Java 27 supports all versions
+Java 28 supports all versions
 ```
